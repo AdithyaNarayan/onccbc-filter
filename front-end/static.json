@@ -1,0 +1,8 @@
+{
+    "root": "public/",
+    "routes": {
+        "/assets/*": "/assets/",
+        "/**": "home.html"
+    },
+    "https_only": true
+}
