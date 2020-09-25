@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Blockchain Club</title>
+        <title>ONCC Selector</title>
         <link
             rel="stylesheet"
             href="https://unpkg.com/tailwindcss/dist/tailwind.min.css"
@@ -15,6 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.0/web3.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="icon" href="https://campus.opennodes.com/wp-content/uploads/2020/09/cropped-opennodes-mono-03-32x32.png" sizes="32x32" />
     </head>
 
     <body
@@ -30,7 +31,7 @@
             <span class="text-2xl"
                 >The Great
                 <span class="text-3xl font-bold"
-                    >OpenNodes Blockchain Club</span
+                    >OpenNodes Campus Collective</span
                 >
                 Filter
             </span>
@@ -38,16 +39,27 @@
         <div id="alert"></div>
         <div id="rest">
             <div
+            id="instructions"
+            class="rounded-lg shadow-lg bg-blue-200 m-16 mt-6 p-4 text-black text-2xl"
+        >
+            <div class="text-2xl font-bold">Instructions</div>
+            <div class="text-xl">
+                Now that you have worked on OpenNodes Campus Collective's self-paced blockchain course, it is time to put your knowledge to the test.
+                Below you will find two challenges. This is to cater to both non-technical and technical students.
+                However, each Ethereum address you have can only do one challenge.
+                Are you ready?
+            </div>
+        </div>
+            <div
                 id="nontechnical"
                 class="rounded-lg shadow-lg bg-blue-200 m-16 mt-6 p-4 text-black text-2xl"
             >
                 <div class="text-2xl font-bold">Non-Technical Submission</div>
                 <div class="text-xl">
-                    You can only choose one group. Please select carefully. You
-                    will be sending 0.1 ether on the Ropsten Test Network. Send
-                    us an email at abc@gmail.com with the message you enter
-                    below. Please wait for confirmation of transaction from
-                    MetaMask.
+                    Your task is to send 0.1 of test Ether from the Ropsten Test Network to commit a message into the smart contract.
+                    If you complete this challenge, you would have proven that you can interact with smart contracts. 
+                    When you have succeded, send us an email at campus@opennodes.com with the message you committed below!
+                    Please wait for confirmation of transaction from MetaMask before you send us the email.
                 </div>
                 <div class="flex justify-center">
                     <div
@@ -64,7 +76,7 @@
                             id="burnnontech"
                             class="w-full m-1 p-2 text-sm bg-blue-500 hover:bg-blue-700 rounded-lg font-semibold uppercase lg:w-auto"
                         >
-                            Burn message to blockchain
+                            Commit your message to the blockchain
                         </button>
                     </div>
                 </div>
@@ -76,21 +88,19 @@
             >
                 <div class="text-2xl font-bold">Technical Submission</div>
                 <div class="text-xl">
-                    You can only choose one group. Please select carefully. You
-                    will have to submit the message through the
-                    <span class="font-mono font-bold"
-                        >sendMessageTechnical</span
-                    >
-                    method of the smart contract. You can feel free to use Remix
-                    IDE, Etherscan or the JS console given below (if you know
-                    web3js). The smart contract code and the address are given
-                    below. Good luck! Remember to send an email to abc@gmail.com
-                    with the message your burnt to get access to the exclusive
-                    tele group.
+                    The smart contract code and the address are given below. 
+                    Study it closely to make sense of the challenge you are given.
+                    Here's your only hint, you need to register your address in the smart contract to get the questions.
+                    When completed, you may submit your message through the
+                    <span class="font-mono font-bold">sendMessageTechnical</span>
+                    method of the smart contract. Feel free to use Remix
+                    IDE, Etherscan or the JS console given below.  
+                    Good luck! Remember to send an email to campus@opennodes.com
+                    with the message you have committed to the blockchain.
                 </div>
 
-                <div id="contractaddress" class="text-xl italic"></div>
-                <div class="text-xl italic">Smart Contract Code</div>
+                <div id="contractaddress" class="text-xl italic"></div><br>
+                <div class="text-xl italic">Smart Contract Codes</div>
                 <div class="bg-black text-white p-4 rounded-lg m-4 text-sm">
                     <pre><code id="codearea1"></code></pre>
                 </div>
@@ -110,7 +120,7 @@
                             const defaultAccount = account[0];
                             web3.eth.defaultAccount = defaultAccount;
                             window.account = defaultAccount;
-                            console.log("Welcome to the filter!");
+                            console.log("Welcome to the challenge!");
                             console.log("Variables available for the challenger are contract and account");
                         });
                         return true;
@@ -669,7 +679,7 @@ abstract contract Ownable {
                         .then(function (receipt) {
                             $(
                                 "#nontechsuccess"
-                            ).html(`Your Non-Technical Submission has been burnt into the
+                            ).html(`Your submission has been burnt into the
                                                         blockchain for all eternity.`);
                         });
                 });
@@ -683,7 +693,7 @@ abstract contract Ownable {
                     },
                     function (error, event) {
                         $("#nontechsuccess")
-                            .html(`Your Non-Technical Submission has been burnt into the
+                            .html(`Your submission has been burnt into the
                                                         blockchain for all eternity.`);
                     }
                 );
